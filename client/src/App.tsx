@@ -9,17 +9,17 @@ function App() {
 
 
   return (
-  <html data-theme="cyberpunk">
-    <div className=' min-h-screen'>
+  
+    <div className=' max-h-screen'>
       
         <Navbar />
         <Intro />
         <Shortner />
         <Footer />
       
-    
+      
     </div>
-  </html>
+  
   )
 }
 
