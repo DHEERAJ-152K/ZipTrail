@@ -1,6 +1,6 @@
 const Intro = () => {
   return (
-    <div className=" my-10 px-20 max-w-5xl text-justify">
+    <div className=" my-10 px-10 max-w-4xl text-justify">
       <h1 className=" text-4xl">
         Simplify Your Links with <b className="text-orange-500">ZipTrail</b>
       </h1>
