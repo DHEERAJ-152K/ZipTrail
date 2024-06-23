@@ -6,10 +6,14 @@ import "./App.css";
 
 function App() {
   return (
-    <div className=" max-h-screen">
+    <div className=" flex flex-col min-h-screen">
       <Navbar />
-      <Intro />
-      <Shortner />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 relative mt-10 px-4">
+        <Shortner />
+        <Intro />
+      </div>
+      
+
       <Footer />
     </div>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Shortner = () => {
+const Shortner = (result: any) => {
   const [Url, setUrl] = useState(""); //useState hook to store input longURL
   const longUrl = Url.trim();
 
@@ -35,7 +35,7 @@ const Shortner = () => {
         });
 
         const result = await response.json();
-        console.log(result);
+        console.log(result.shortUrl);
         // Handle success scenario
       }
     } catch (error) {
@@ -45,18 +45,28 @@ const Shortner = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleLink} className=" flex justify-center">
+    <div className=" border border-black rounded-xl p-2 max-w-xl h-fit">
+      <form onSubmit={handleLink} className="w-full">
         <input
           type="text"
           placeholder="Paste your long URL"
-          className=" input input-bordered w-full max-w-xs rounded-xl border-black"
+          className=" input input-bordered w-full rounded-xl bg-transparent border-black"
           value={longUrl}
           onChange={(e) => setUrl(e.target.value)}
         />
+
+        <div className="flex justify-between w-full mt-5">
+          <div className="badge badge-outline w-full py-6 rounded-xl	">
+            default
+          </div>
+          <button className="rounded-xl bg-orange-500 text-black btn btn-xl sm:btn-sm md:btn-md lg:btn-md ml-2">
+            COPY
+          </button>
+        </div>
+
         <button
           type="submit"
-          className=" mx-5 rounded-xl bg-orange-500 text-black btn btn-xl sm:btn-sm md:btn-md lg:btn-md"
+          className="mt-5 rounded-xl bg-orange-500 text-black btn btn-xl sm:btn-sm md:btn-md lg:btn-md w-full"
         >
           Get your Link
         </button>
