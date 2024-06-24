@@ -4,7 +4,7 @@ const Navbar = () => {
       <div className="navbar bg-base-100">
         <a className="btn btn-ghost text-2xl text-orange-500">ZipTrail</a>
 
-        <label className="flex cursor-pointer gap-2 p-4 absolute right-0">
+        {/* <label className="flex cursor-pointer gap-2 p-4 absolute right-0">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -37,7 +37,7 @@ const Navbar = () => {
           >
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
-        </label>
+        </label> */}
       </div>
     </div>
   );
