@@ -70,23 +70,23 @@ const Shortner = () => {
   };
 
   return (
-    <div className=" border border-black rounded-xl p-2 max-w-xl h-fit shadow-xl shadow-gray-300 ">
-      <form onSubmit={handleLink} className="w-full">
+    <div className=" border border-black rounded-xl p-2 lg:p-5 max-w-xl h-auto shadow-xl shadow-gray-300 ">
+      <form onSubmit={handleLink} className="w-full grid grid-cols-1 gap-2 h-full">
         <input
           type="text"
           placeholder="Enter long url here"
-          className=" input input-bordered w-full rounded-xl bg-transparent border-black text-black"
+          className="m-auto input input-bordered w-full rounded-xl bg-transparent border-black text-black"
           value={longUrl}
           onChange={(e) => setUrl(e.target.value)}
         />
 
-        <div className="flex justify-between w-full mt-5">
+        <div className="flex justify-between w-full m-auto">
           <div className="badge badge-outline w-full py-6 rounded-xl flex justify-start border-black text-base text-slate-400">
             {output? <p className="text-black">{output}</p>:"Your short url " }
           </div>
           <button
             onClick={handleCopy}
-            className="rounded-xl bg-orange-500 hover:bg-orange-400 text-black btn btn-xl sm:btn-sm md:btn-md lg:btn-md ml-2"
+            className="rounded-xl bg-orange-500 hover:bg-orange-400 text-black btn btn-xl ml-2"
           >
             {copySuccess ? "Copied!" : "Copy"}
           </button>
@@ -94,7 +94,7 @@ const Shortner = () => {
 
         <button
           type="submit"
-          className="mt-5 rounded-xl bg-orange-500 hover:bg-orange-400 text-black btn btn-xl sm:btn-sm md:btn-md lg:btn-md w-full"
+          className="m-auto rounded-xl bg-orange-500 hover:bg-orange-400 text-black btn btn-xl w-full"
         >
           Get your Link
         </button>

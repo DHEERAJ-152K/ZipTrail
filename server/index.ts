@@ -44,7 +44,7 @@ app.post("/", async (req, res) => {
       url = new Url({ longUrl, shortUrl: newLink });
 
       await url.save();
-      return res.status(201).json(url);
+      return res.status(201).json({shortUrl: url.shortUrl});
     }
   } catch (err) {
     console.error("error:", err);
