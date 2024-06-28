@@ -23,7 +23,7 @@ const Shortner = () => {
   //function to handle the submitted form data
   const handleLink = async (e: any) => {
     e.preventDefault();
-    console.log(longUrl);
+    // console.log(longUrl);
 
     //data fetching using Fetch API
     try {
@@ -39,7 +39,8 @@ const Shortner = () => {
         });
 
         const result = await response.json();
-        console.log(result.shortUrl);
+        // console.log(result.shortUrl);
+        
         // Handle success scenario
 
         if (result) {

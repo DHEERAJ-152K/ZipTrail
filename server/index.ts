@@ -1,12 +1,13 @@
+require('dotenv').config();
 import bodyParser from "body-parser";
 import { nanoid } from "nanoid";
 import express from "express";
 import mongoose from "mongoose";
-import { mongoConnection } from "./Credentials";
 import Url from "./mongoModel";
 const app = express();
 const PORT = process.env.PORT || 3000;
 const cors = require("cors");
+const mongoUri = process.env.MONGO_URI as string;
 
 //Middlewares
 app.use(cors());
@@ -16,7 +17,7 @@ app.use(express.json());
 
 //MongoDb connection using mongoose
 mongoose
-  .connect(mongoConnection)
+  .connect(mongoUri)
   .then(() => {
     console.log("MongoDB connected");
   })
