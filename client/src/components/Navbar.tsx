@@ -2,7 +2,11 @@ const Navbar = () => {
   return (
     <div className=" flex drop-shadow-xl">
       <div className="navbar bg-base-100">
-        <a className="btn btn-ghost text-2xl text-orange-500">ZipTrail</a>
+        <div className=" cursor-pointer">
+          <img src="/logo.svg" width={60}></img>
+          <p className="btn btn-ghost text-4xl text-orange-500 absolute left-10 hover:bg-transparent">ipTrail</p>
+        </div>
+        
 
         {/* <label className="flex cursor-pointer gap-2 p-4 absolute right-0">
           <svg

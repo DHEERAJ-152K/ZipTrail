@@ -37,8 +37,8 @@ app.post("/", async (req, res) => {
       return res.json(url);
     } else {
       console.log("not found");
-      const shortId = nanoid(10);
-      const newLink = `https://ziptrail.com/${shortId}`;
+      const shortId = nanoid(7);
+      const newLink = `https://zt-vkan.onrender.com/${shortId}`;
       console.log(longUrl);
       console.log(newLink);
 
@@ -56,7 +56,7 @@ app.post("/", async (req, res) => {
 //API for redirecting to original URL when short url is clicked.
 app.get("/:shortId", async (req, res) => {
   const { shortId } = req.params;
-  const getUrl = `https://ziptrail.com/${shortId}`;
+  const getUrl = `https://zt-vkan.onrender.com/${shortId}`;
   console.log(getUrl);
 
   try {

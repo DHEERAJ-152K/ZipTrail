@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const Shortner = () => {
   const [Url, setUrl] = useState(""); //useState hook to store input longURL
-  const [output, setOutput] = useState('');
+  const [output, setOutput] = useState("");
   const [copySuccess, setCopySuccess] = useState(false);
 
   const longUrl = Url.trim();
@@ -30,7 +30,7 @@ const Shortner = () => {
       if (!isValidUrl(longUrl)) {
         alert("Invalid URL! Try again..");
       } else {
-        const response = await fetch("http://localhost:3000/", {
+        const response = await fetch("https://zt-vkan.onrender.com/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -97,7 +97,7 @@ const Shortner = () => {
           type="submit"
           className="m-auto rounded-xl bg-orange-500 hover:bg-orange-400 text-black btn btn-xl w-full"
         >
-          Get your Link
+          Get your short Link !
         </button>
       </form>
     </div>
