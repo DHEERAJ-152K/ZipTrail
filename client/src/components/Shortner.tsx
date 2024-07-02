@@ -30,7 +30,7 @@ const Shortner = () => {
       if (!isValidUrl(longUrl)) {
         alert("Invalid URL! Try again..");
       } else {
-        const response = await fetch("https://zt-vkan.onrender.com/", {
+        const response = await fetch("https://zt-vkan.onrender.com", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const Shortner = () => {
 
         const result = await response.json();
         // console.log(result.shortUrl);
-        
+
         // Handle success scenario
 
         if (result) {
@@ -72,7 +72,10 @@ const Shortner = () => {
 
   return (
     <div className=" border border-black rounded-xl p-2 lg:p-5 max-w-xl h-auto shadow-xl shadow-gray-300 ">
-      <form onSubmit={handleLink} className="w-full grid grid-cols-1 gap-2 h-full">
+      <form
+        onSubmit={handleLink}
+        className="w-full grid grid-cols-1 gap-2 h-full"
+      >
         <input
           type="text"
           placeholder="Enter long url here"
@@ -82,14 +85,37 @@ const Shortner = () => {
         />
 
         <div className="flex justify-between w-full m-auto">
-          <div className="badge badge-outline w-full py-6 rounded-xl flex justify-start border-black text-base text-slate-400">
-            {output? <p className="text-black">{output}</p>:"Your short url " }
+          <div className="badge badge-outline w-full py-6 rounded-xl flex justify-start border-black text-base text-slate-400 overflow-hidden">
+            {output ? (
+              <p className="text-black">{output}</p>
+            ) : (
+              "Your short url "
+            )}
+            
           </div>
           <button
             onClick={handleCopy}
-            className="rounded-xl bg-orange-500 hover:bg-orange-400 text-black btn btn-xl ml-2"
+            className="rounded-xl bg-orange-500 hover:bg-orange-400 text-black btn btn-xl ml-2 md: p-3 "
           >
-            {copySuccess ? "Copied!" : "Copy"}
+            {copySuccess ? (
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check2" viewBox="0 0 16 16">
+              <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
+            </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-copy"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"
+                />
+              </svg>
+            )}
           </button>
         </div>
 

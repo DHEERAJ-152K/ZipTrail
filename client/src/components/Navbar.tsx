@@ -3,7 +3,7 @@ const Navbar = () => {
     <div className=" flex drop-shadow-xl">
       <div className="navbar bg-base-100">
         <div className=" cursor-pointer">
-          <img src="/logo.svg" width={60}></img>
+          <img src="/logo.svg" width="60" height="auto" alt="Ziptrail"></img>
           <p className="btn btn-ghost text-4xl text-orange-500 absolute left-10 hover:bg-transparent">ipTrail</p>
         </div>
         
