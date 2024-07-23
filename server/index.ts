@@ -74,6 +74,11 @@ app.get("/:shortId", async (req, res) => {
   }
 });
 
+//Adding a Cron Job to keep awake the server.
+app.get('/health', (req, res) => {
+  res.send('OK');
+});
+
 //live server on port 3000
 app.listen(PORT, () => {
   console.log(`App running on port: ${PORT}`);
