@@ -25,6 +25,17 @@ mongoose
     console.error("MongoDB connection error:", err);
   });
 
+app.get('/', (req, res) => {
+  console.log('Root endpoint hit');
+  res.send('Root endpoint is working');
+});
+
+// Adding a Cron Job to keep the server awake.
+app.get('/health', (req, res) => {
+  console.log('Health check endpoint hit');
+  res.send('OK');
+});
+
 //API to fetch Long URL and generate a short URL and store it in the DB.
 app.post("/", async (req, res) => {
   const { longUrl } = req.body;
@@ -72,11 +83,6 @@ app.get("/:shortId", async (req, res) => {
     console.error("Error:", err);
     return res.status(500).json({ error: "Server error" });
   }
-});
-
-//Adding a Cron Job to keep awake the server.
-app.get('/health', (req, res) => {
-  res.send('OK');
 });
 
 //live server on port 3000
