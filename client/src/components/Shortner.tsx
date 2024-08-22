@@ -4,17 +4,15 @@ const Shortner = () => {
   const [Url, setUrl] = useState(""); //useState hook to store input longURL
   const [output, setOutput] = useState("");
   const [copySuccess, setCopySuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const longUrl = Url.trim();
 
   //URL validator
   function isValidUrl(string: any) {
     try {
-      if (string.includes(" ")) {
-        return false;
-      }
-      new URL(string);
-      return true;
+      const regex = /^https:\/\/[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/[^\s]*)?$/;
+      return regex.test(string);
     } catch (_) {
       return false;
     }
@@ -30,6 +28,7 @@ const Shortner = () => {
       if (!isValidUrl(longUrl)) {
         alert("Invalid URL! Try again..");
       } else {
+        setIsLoading(true); 
         const response = await fetch("https://zt-vkan.onrender.com", {
           method: "POST",
           headers: {
@@ -46,6 +45,7 @@ const Shortner = () => {
         if (result) {
           setOutput(result.shortUrl);
           setCopySuccess(false);
+          setIsLoading(false);
         }
       }
     } catch (error) {
@@ -53,7 +53,7 @@ const Shortner = () => {
       // Handle error scenario
     }
   };
-
+  
   //function to handle copy-to-clipboard.
   const handleCopy = async (e: any) => {
     e.preventDefault();
@@ -89,18 +89,27 @@ const Shortner = () => {
             {output ? (
               <p className="text-black">{output}</p>
             ) : (
-              "Your short url "
+              "Get your short url "
             )}
-            
           </div>
+
+          
           <button
             onClick={handleCopy}
-            className="rounded-xl bg-orange-500 hover:bg-orange-400 text-black btn btn-xl ml-2 md: p-3 "
+            
+            className={ output ? "rounded-xl bg-orange-500 hover:bg-orange-400 text-black btn btn-xl ml-2 md: p-3" : "rounded-xl cursor-not-allowed bg-slate-200 hover:bg-none text-black btn btn-xl ml-2 md: p-3"}
           >
             {copySuccess ? (
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-check2" viewBox="0 0 16 16">
-              <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0"/>
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-check2"
+                viewBox="0 0 16 16"
+              >
+                <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0" />
+              </svg>
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -123,7 +132,7 @@ const Shortner = () => {
           type="submit"
           className="m-auto rounded-xl bg-orange-500 hover:bg-orange-400 text-black btn btn-xl w-full"
         >
-          Get your short Link !
+         {(isLoading)?'Please wait...': 'Get your short Link !'}
         </button>
       </form>
     </div>
