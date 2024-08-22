@@ -4,6 +4,7 @@ const Shortner = () => {
   const [Url, setUrl] = useState(""); //useState hook to store input longURL
   const [output, setOutput] = useState("");
   const [copySuccess, setCopySuccess] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const longUrl = Url.trim();
 
@@ -27,6 +28,7 @@ const Shortner = () => {
       if (!isValidUrl(longUrl)) {
         alert("Invalid URL! Try again..");
       } else {
+        setIsLoading(true); 
         const response = await fetch("https://zt-vkan.onrender.com", {
           method: "POST",
           headers: {
@@ -43,6 +45,7 @@ const Shortner = () => {
         if (result) {
           setOutput(result.shortUrl);
           setCopySuccess(false);
+          setIsLoading(false);
         }
       }
     } catch (error) {
@@ -50,7 +53,7 @@ const Shortner = () => {
       // Handle error scenario
     }
   };
-
+  
   //function to handle copy-to-clipboard.
   const handleCopy = async (e: any) => {
     e.preventDefault();
@@ -86,12 +89,15 @@ const Shortner = () => {
             {output ? (
               <p className="text-black">{output}</p>
             ) : (
-              "Your short url "
+              "Get your short url "
             )}
           </div>
+
+          
           <button
             onClick={handleCopy}
-            className="rounded-xl bg-orange-500 hover:bg-orange-400 text-black btn btn-xl ml-2 md: p-3 "
+            
+            className={ output ? "rounded-xl bg-orange-500 hover:bg-orange-400 text-black btn btn-xl ml-2 md: p-3" : "rounded-xl cursor-not-allowed bg-slate-200 hover:bg-none text-black btn btn-xl ml-2 md: p-3"}
           >
             {copySuccess ? (
               <svg
@@ -126,7 +132,7 @@ const Shortner = () => {
           type="submit"
           className="m-auto rounded-xl bg-orange-500 hover:bg-orange-400 text-black btn btn-xl w-full"
         >
-          Get your short Link !
+         {(isLoading)?'Please wait...': 'Get your short Link !'}
         </button>
       </form>
     </div>
